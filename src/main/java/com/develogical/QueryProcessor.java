@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 public class QueryProcessor {
 
   String patternAddition = "What is (\\d+) plus (\\d+)\\?";
+    String patternAdditionMultiple = "What is (\\d+) plus (\\d+) plus (\\\\d+)\\?";
+
   String patternHighestOfThree = "Which of the following numbers is the largest: (\\d+), (\\d+), (\\d+)\\?";
   String patternSquareCube = "Which of the following numbers is both a square and a cube:";
   String patternPrimes = "Which of the following numbers are primes:";
@@ -30,6 +32,15 @@ public class QueryProcessor {
         int num1 = Integer.parseInt(parts[2]);
         int num2 = Integer.parseInt(parts[4].substring(0, parts[4].length() - 1));
         return String.valueOf(num1 + num2);
+    }
+
+    if (query.matches(patternAdditionMultiple)) {
+      String[] parts = query.split(" ");
+        int num1 = Integer.parseInt(parts[2]);
+        int num2 = Integer.parseInt(parts[4]);
+        int num3 = Integer.parseInt(parts[6].substring(0, parts[6].length() - 1));
+
+        return String.valueOf(num1 + num2 + num3);
     }
     
     if (query.matches(powerPattern)) {
