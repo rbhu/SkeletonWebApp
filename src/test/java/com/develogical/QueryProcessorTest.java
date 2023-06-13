@@ -31,6 +31,11 @@ public class QueryProcessorTest {
   }
 
   @Test
+  public void returnsCorrectMinus() throws Exception {
+    assertThat(queryProcessor.process("What is 70 minus 25?"), is("45"));
+  }
+
+  @Test
   public void returnsHighest() throws Exception {
     assertThat(queryProcessor.process("Which of the following numbers is the largest: 47, 83, 48?"), is("83"));
   }
@@ -43,6 +48,11 @@ public class QueryProcessorTest {
   @Test
   public void returnsCorrectMultiplication() throws Exception {
     assertThat(queryProcessor.process("What is 72 multiplied by 35?"), is("2520"));
+  }
+
+  @Test
+  public void returnsCorrectDivision() throws Exception {
+    assertThat(queryProcessor.process("What is 3 divided by 2?"), is("1.5"));
   }
 
 

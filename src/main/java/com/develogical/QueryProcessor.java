@@ -11,9 +11,8 @@ public class QueryProcessor {
   String patternSquareCube = "Which of the following numbers is both a square and a cube:";
   String patternPrimes = "Which of the following numbers are primes:";
     String patternMinus = "What is (\\d+) minus (\\d+)\\?";
-
-// What is 57 minus 75?
   String patternMultiplication = "What is (\\d+) multiplied by (\\d+)\\?";
+  String patternDivisionString = "What is (\\d+) divided by (\\d+)\\?";
 
 
   public String process(String query) {
@@ -70,6 +69,12 @@ public class QueryProcessor {
         return String.valueOf(num1 * num2);
     }
 
+    if (query.matches(patternDivisionString)) {
+        String[] parts = query.split(" ");
+        Double num1 = Double.parseDouble(parts[2]);
+        Double num2 = Double.parseDouble(parts[5].substring(0, parts[5].length() - 1));
+        return String.valueOf(num1 / num2);
+    }
 
     if (query.matches(patternHighestOfThree)) {
         String afterColon = query.substring(query.indexOf(':')+1, query.length() - 1);
