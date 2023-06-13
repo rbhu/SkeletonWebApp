@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public class QueryProcessor {
 
   String patternAddition = "What is (\\d+) plus (\\d+)\\?";
-    String patternAdditionMultiple = "What is (\\d+) plus (\\d+) plus (\\\\d+)\\?";
+    String patternAdditionMultiple = "What is (\\d+) plus (\\d+) plus (\\d+)\\?";
 
   String patternHighestOfThree = "Which of the following numbers is the largest: (\\d+), (\\d+), (\\d+)\\?";
   String patternSquareCube = "Which of the following numbers is both a square and a cube:";

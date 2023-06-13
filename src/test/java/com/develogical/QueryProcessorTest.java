@@ -72,6 +72,18 @@ public class QueryProcessorTest {
       assertThat(queryProcessor.process("Which of the following numbers are primes: 25, 97, 7, 22, 13?"), is("97, 7, 13"));
   }
 
+  @Test
+  public void returnsPowerOf() throws Exception {
+      assertThat(queryProcessor.process("What is 67 to the power of 5?"), is("1350125107"));
+  }
+
+
+  // What is 32 plus 30 plus 24?
+   @Test
+  public void returnsCorrectAdditionMultops() throws Exception {
+    assertThat(queryProcessor.process("What is 32 plus 30 plus 24?"), is("86"));
+  }
+
 }
 
 
