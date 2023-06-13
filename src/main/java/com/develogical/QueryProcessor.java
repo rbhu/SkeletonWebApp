@@ -5,6 +5,7 @@ public class QueryProcessor {
 
   String patternAddition = "What is (\\d+) plus (\\d+)\\?";
   String patternHighestOfThree = "Which of the following numbers is the largest: (\\d+), (\\d+), (\\d+)\\?";
+  String patternMultiplication = "What is (\\d+) multiplied by (\\d+)\\?";
 
 
   public String process(String query) {
@@ -20,6 +21,13 @@ public class QueryProcessor {
         int num1 = Integer.parseInt(parts[2]);
         int num2 = Integer.parseInt(parts[4].substring(0, parts[4].length() - 1));
         return String.valueOf(num1 + num2);
+    }
+
+    if (query.matches(patternMultiplication)) {
+        String[] parts = query.split(" ");
+        int num1 = Integer.parseInt(parts[2]);
+        int num2 = Integer.parseInt(parts[5].substring(0, parts[4].length() - 1));
+        return String.valueOf(num1 * num2);
     }
 
 
