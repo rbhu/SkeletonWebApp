@@ -1,5 +1,5 @@
 # Change the following line to match your own app name.
-app = "horse-battery-66"
+app = "team-deutsche-bank"
 
 kill_signal = "SIGINT"
 kill_timeout = 5
