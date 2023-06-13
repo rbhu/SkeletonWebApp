@@ -1,11 +1,15 @@
 package com.develogical;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class QueryProcessor {
 
   String patternAddition = "What is (\\d+) plus (\\d+)\\?";
   String patternHighestOfThree = "Which of the following numbers is the largest: (\\d+), (\\d+), (\\d+)\\?";
   String patternSquareCube = "Which of the following numbers is both a square and a cube:";
+  String patternPrimes = "Which of the following numbers are primes:";
 
   String patternMultiplication = "What is (\\d+) multiplied by (\\d+)\\?";
 
@@ -30,6 +34,18 @@ public class QueryProcessor {
         for (int part: parts) {
           if (isSquareAndCube((part))) return String.valueOf(part);
         }
+
+    }
+
+    if (query.startsWith(patternPrimes)) {
+        int[] parts = extractNumbersAfterColon(query);
+        List<Integer> primes = new ArrayList<Integer>();
+        for (int part: parts) {
+          if (isPrime((part))) {
+            primes.add(part);
+          }
+        }
+        return primes.stream().map(String::valueOf).collect(Collectors.joining(", "));
 
     }
 
@@ -78,5 +94,20 @@ public class QueryProcessor {
 
     private static boolean isInteger(double number) {
         return Math.floor(number) == number;
+    }
+
+    private static boolean isPrime(int number) {
+        if (number <= 1) {
+            return false;
+        }
+
+        // Check divisibility from 2 to the square root of the number
+        for (int i = 2; i <= Math.sqrt(number); i++) {
+            if (number % i == 0) {
+                return false; // Not prime if divisible by any number
+            }
+        }
+
+        return true; // Prime if not divisible by any number
     }
 }
