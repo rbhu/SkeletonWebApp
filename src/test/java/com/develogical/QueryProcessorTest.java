@@ -27,6 +27,6 @@ public class QueryProcessorTest {
 
     @Test
   public void returnsCorrectAddition() throws Exception {
-    assertThat(queryProcessor.process("what is 43 plus 10?"), is("53"));
+    assertThat(queryProcessor.process("What is 70 plus 25?"), is("95"));
   }
 }

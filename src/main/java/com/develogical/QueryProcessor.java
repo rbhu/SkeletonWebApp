@@ -3,7 +3,9 @@ package com.develogical;
 
 public class QueryProcessor {
 
-  String pattern = "what is (\\d+) plus (\\d+)\\?";
+  String patternAddition = "What is (\\d+) plus (\\d+)\\?";
+  String patternHighestOfThree = "Which of the following numbers is the largest: (\\d+), (\\d+), (\\d+)\\?";
+
 
   public String process(String query) {
 
@@ -13,12 +15,23 @@ public class QueryProcessor {
       return "TeamBrasil";
     }
 
-    if (query.matches(pattern)) {
+    if (query.matches(patternAddition)) {
         String[] parts = query.split(" ");
         int num1 = Integer.parseInt(parts[2]);
         int num2 = Integer.parseInt(parts[4].substring(0, parts[4].length() - 1));
         return String.valueOf(num1 + num2);
     }
+
+
+    if (query.matches(patternHighestOfThree)) {
+        String afterColon = query.substring(query.indexOf(':')+1, query.length() - 1);
+        String[] parts = afterColon.split(", ");
+        int num1 = Integer.parseInt(parts[0].trim());
+        int num2 = Integer.parseInt(parts[1].trim());
+        int num3 = Integer.parseInt(parts[1].trim());
+        return String.valueOf(Math.max(Math.max(num1, num2), num3));
+    }
+
 
     if (query.toLowerCase().contains("shakespeare")) {
       return "William Shakespeare (26 April 1564 - 23 April 1616) was an "
