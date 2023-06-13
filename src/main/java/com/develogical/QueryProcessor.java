@@ -10,7 +10,9 @@ public class QueryProcessor {
   String patternHighestOfThree = "Which of the following numbers is the largest: (\\d+), (\\d+), (\\d+)\\?";
   String patternSquareCube = "Which of the following numbers is both a square and a cube:";
   String patternPrimes = "Which of the following numbers are primes:";
+    String patternMinus = "What is (\\d+) minus (\\d+)\\?";
 
+// What is 57 minus 75?
   String patternMultiplication = "What is (\\d+) multiplied by (\\d+)\\?";
 
 
@@ -29,6 +31,13 @@ public class QueryProcessor {
         return String.valueOf(num1 + num2);
     }
 
+      if (query.matches(patternMinus)) {
+        String[] parts = query.split(" ");
+        int num1 = Integer.parseInt(parts[2]);
+        int num2 = Integer.parseInt(parts[4].substring(0, parts[4].length() - 1));
+        return String.valueOf(num1 - num2);
+    }
+
     if (query.startsWith(patternSquareCube)) {
         int[] parts = extractNumbersAfterColon(query);
         List<Integer> res = new ArrayList<Integer>();
@@ -37,7 +46,7 @@ public class QueryProcessor {
           if (isSquareAndCube((part))){
             res.add(part);
           }
-        
+    
         }
         return res.stream().map(String::valueOf).collect(Collectors.joining(", "));
     }
