@@ -13,6 +13,8 @@ public class QueryProcessor {
     String patternMinus = "What is (\\d+) minus (\\d+)\\?";
   String patternMultiplication = "What is (\\d+) multiplied by (\\d+)\\?";
   String patternDivisionString = "What is (\\d+) divided by (\\d+)\\?";
+// What is 25 to the power of 69?
+  String powerPattern = "What is (\\d+) to the power of (\\d+)\\?";
 
 
   public String process(String query) {
@@ -28,6 +30,13 @@ public class QueryProcessor {
         int num1 = Integer.parseInt(parts[2]);
         int num2 = Integer.parseInt(parts[4].substring(0, parts[4].length() - 1));
         return String.valueOf(num1 + num2);
+    }
+    
+    if (query.matches(powerPattern)) {
+        String[] parts = query.split(" ");
+        int num1 = Integer.parseInt(parts[2]);
+        int num2 = Integer.parseInt(parts[7].substring(0, parts[7].length() - 1));
+        return String.valueOf(Math.pow(num1, num2));
     }
 
       if (query.matches(patternMinus)) {
