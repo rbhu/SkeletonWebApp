@@ -24,4 +24,9 @@ public class QueryProcessorTest {
   public void returnsWhatIsOurName() throws Exception {
     assertThat(queryProcessor.process("what is your name?"), is("TeamBrasil"));
   }
+
+    @Test
+  public void returnsCorrectAddition() throws Exception {
+    assertThat(queryProcessor.process("what is 43 plus 10?"), is("53"));
+  }
 }
