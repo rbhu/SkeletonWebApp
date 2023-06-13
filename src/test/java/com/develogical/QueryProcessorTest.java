@@ -44,4 +44,13 @@ public class QueryProcessorTest {
   public void returnsCorrectMultiplication() throws Exception {
     assertThat(queryProcessor.process("What is 72 multiplied by 35?"), is("2520"));
   }
+
+
+  @Test
+  public void returnsSquareAndCube() throws Exception {
+  
+      assertThat(queryProcessor.process("Which of the following numbers is both a square and a cube: 729, 2197, 1849, 25, 3441, 3211, 936?"), is("729"));
+
+  }
+
 }

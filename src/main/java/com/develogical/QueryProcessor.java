@@ -5,7 +5,7 @@ public class QueryProcessor {
 
   String patternAddition = "What is (\\d+) plus (\\d+)\\?";
   String patternHighestOfThree = "Which of the following numbers is the largest: (\\d+), (\\d+), (\\d+)\\?";
-  String patternSquareCube = "Which of the following numbers is the largest:";
+  String patternSquareCube = "Which of the following numbers is both a square and a cube:";
 
   String patternMultiplication = "What is (\\d+) multiplied by (\\d+)\\?";
 
@@ -28,12 +28,18 @@ public class QueryProcessor {
     if (query.startsWith(patternSquareCube)) {
         String afterColon = query.substring(query.indexOf(':')+1, query.length() - 1);
         String[] parts = afterColon.split(", ");
-        int num1 = Integer.parseInt(parts[0].trim());
-        int num2 = Integer.parseInt(parts[1].trim());
-        int num3 = Integer.parseInt(parts[2].trim());
         // int num1 = Integer.parseInt(parts[0].trim());
         // int num2 = Integer.parseInt(parts[1].trim());
         // int num3 = Integer.parseInt(parts[2].trim());
+        // int num4 = Integer.parseInt(parts[3].trim());
+        // int num5 = Integer.parseInt(parts[4].trim());
+        // int num6 = Integer.parseInt(parts[5].trim());
+        // int num7 = Integer.parseInt(parts[6].trim());
+
+        for (String part: parts) {
+          if (isSquareAndCube(Integer.valueOf(part.trim()))) return part.trim();
+        }
+
     }
 
     if (query.matches(patternMultiplication)) {
@@ -62,4 +68,15 @@ public class QueryProcessor {
 
     return "";
   }
+
+    private static boolean isSquareAndCube(int number) {
+        double squareRoot = Math.sqrt(number);
+        double cubeRoot = Math.cbrt(number);
+
+        return isInteger(squareRoot) && isInteger(cubeRoot);
+    }
+
+    private static boolean isInteger(double number) {
+        return Math.floor(number) == number;
+    }
 }
