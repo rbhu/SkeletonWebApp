@@ -26,18 +26,9 @@ public class QueryProcessor {
     }
 
     if (query.startsWith(patternSquareCube)) {
-        String afterColon = query.substring(query.indexOf(':')+1, query.length() - 1);
-        String[] parts = afterColon.split(", ");
-        // int num1 = Integer.parseInt(parts[0].trim());
-        // int num2 = Integer.parseInt(parts[1].trim());
-        // int num3 = Integer.parseInt(parts[2].trim());
-        // int num4 = Integer.parseInt(parts[3].trim());
-        // int num5 = Integer.parseInt(parts[4].trim());
-        // int num6 = Integer.parseInt(parts[5].trim());
-        // int num7 = Integer.parseInt(parts[6].trim());
-
-        for (String part: parts) {
-          if (isSquareAndCube(Integer.valueOf(part.trim()))) return part.trim();
+        int[] parts = extractNumbersAfterColon(query);
+        for (int part: parts) {
+          if (isSquareAndCube((part))) return String.valueOf(part);
         }
 
     }
@@ -69,10 +60,19 @@ public class QueryProcessor {
     return "";
   }
 
+  private int[] extractNumbersAfterColon(String query) {
+    String afterColon = query.substring(query.indexOf(':')+1, query.length() - 1);
+    String[] parts = afterColon.split(", ");
+    int[] ints = new int[parts.length];
+    for (int i = 0; i < parts.length; i++ ) {
+      ints[i] = Integer.valueOf(parts[i].trim());
+    }
+    return ints;
+  }
+
     private static boolean isSquareAndCube(int number) {
         double squareRoot = Math.sqrt(number);
         double cubeRoot = Math.cbrt(number);
-
         return isInteger(squareRoot) && isInteger(cubeRoot);
     }
 
