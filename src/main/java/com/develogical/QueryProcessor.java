@@ -26,7 +26,7 @@ public class QueryProcessor {
     if (query.matches(patternMultiplication)) {
         String[] parts = query.split(" ");
         int num1 = Integer.parseInt(parts[2]);
-        int num2 = Integer.parseInt(parts[5].substring(0, parts[4].length() - 1));
+        int num2 = Integer.parseInt(parts[5].substring(0, parts[5].length() - 1));
         return String.valueOf(num1 * num2);
     }
 

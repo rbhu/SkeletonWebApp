@@ -25,18 +25,23 @@ public class QueryProcessorTest {
     assertThat(queryProcessor.process("what is your name?"), is("TeamBrasil"));
   }
 
-    @Test
+  @Test
   public void returnsCorrectAddition() throws Exception {
     assertThat(queryProcessor.process("What is 70 plus 25?"), is("95"));
   }
 
-      @Test
+  @Test
   public void returnsHighest() throws Exception {
     assertThat(queryProcessor.process("Which of the following numbers is the largest: 47, 83, 48?"), is("83"));
   }
 
-        @Test
+  @Test
   public void returnsHighest2() throws Exception {
     assertThat(queryProcessor.process("Which of the following numbers is the largest: 93, 34, 39?"), is("93"));
+  }
+
+  @Test
+  public void returnsCorrectMultiplication() throws Exception {
+    assertThat(queryProcessor.process("What is 72 multiplied by 35?"), is("2520"));
   }
 }
