@@ -31,10 +31,15 @@ public class QueryProcessor {
 
     if (query.startsWith(patternSquareCube)) {
         int[] parts = extractNumbersAfterColon(query);
-        for (int part: parts) {
-          if (isSquareAndCube((part))) return String.valueOf(part);
-        }
+        List<Integer> res = new ArrayList<Integer>();
 
+        for (int part: parts) {
+          if (isSquareAndCube((part))){
+            res.add(part);
+          }
+        
+        }
+        return res.stream().map(String::valueOf).collect(Collectors.joining(", "));
     }
 
     if (query.startsWith(patternPrimes)) {
