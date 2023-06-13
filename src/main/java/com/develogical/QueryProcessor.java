@@ -5,6 +5,8 @@ public class QueryProcessor {
 
   String patternAddition = "What is (\\d+) plus (\\d+)\\?";
   String patternHighestOfThree = "Which of the following numbers is the largest: (\\d+), (\\d+), (\\d+)\\?";
+  String patternSquareCube = "Which of the following numbers is the largest:";
+
   String patternMultiplication = "What is (\\d+) multiplied by (\\d+)\\?";
 
 
@@ -23,6 +25,17 @@ public class QueryProcessor {
         return String.valueOf(num1 + num2);
     }
 
+    if (query.startsWith(patternSquareCube)) {
+        String afterColon = query.substring(query.indexOf(':')+1, query.length() - 1);
+        String[] parts = afterColon.split(", ");
+        int num1 = Integer.parseInt(parts[0].trim());
+        int num2 = Integer.parseInt(parts[1].trim());
+        int num3 = Integer.parseInt(parts[2].trim());
+        // int num1 = Integer.parseInt(parts[0].trim());
+        // int num2 = Integer.parseInt(parts[1].trim());
+        // int num3 = Integer.parseInt(parts[2].trim());
+    }
+
     if (query.matches(patternMultiplication)) {
         String[] parts = query.split(" ");
         int num1 = Integer.parseInt(parts[2]);
@@ -36,7 +49,7 @@ public class QueryProcessor {
         String[] parts = afterColon.split(", ");
         int num1 = Integer.parseInt(parts[0].trim());
         int num2 = Integer.parseInt(parts[1].trim());
-        int num3 = Integer.parseInt(parts[1].trim());
+        int num3 = Integer.parseInt(parts[2].trim());
         return String.valueOf(Math.max(Math.max(num1, num2), num3));
     }
 
